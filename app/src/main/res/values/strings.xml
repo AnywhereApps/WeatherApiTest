@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="title">Title</string>
+
+    <string name="date">Date: %s</string>
+    <string name="sunrise">Sunrise: %s</string>
+    <string name="sunset">Sunset: %s</string>
+    <string name="temperature">Temperature: %s</string>
+    <string name="pressure">Pressure: %s</string>
+    <string name="humidity">Humidity: %s</string>
+    <string name="windspeed">WindSpeed: %s</string>
+    <string name="visibility">Visibility: %s</string>
+    <string name="weather">Weather: %s</string>
+</resources>
