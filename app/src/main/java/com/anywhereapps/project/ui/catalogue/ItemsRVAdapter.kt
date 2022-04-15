@@ -15,7 +15,7 @@ class ItemsRVAdapter(
     private val itemClickedListener: OnItemClickedListener,
     val mContext : Context?) : RecyclerView.Adapter<ItemsRVAdapter.ItemViewHolder>() {
 
-    private var items = listOf<Item>()
+    var items = listOf<Item>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemBinding = ItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -34,6 +34,7 @@ class ItemsRVAdapter(
         this.items = items
         notifyDataSetChanged()
     }
+
 
     inner class ItemViewHolder(private val binding : ItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Item) {

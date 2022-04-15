@@ -11,8 +11,11 @@ class RepositoryImpl @Inject constructor(
     private val itemsDB: IItemsDatabase,
     private val iNetwork: INetwork
 ): IRepository {
-    override suspend fun getWeatherReport(): WeatherReport {
-         return iNetwork.getWeatherReport()
+    override suspend fun getWeatherReport(latitude : String,
+                                          longitude : String,
+                                          exclude : String,
+                                          appid : String): WeatherReport {
+         return iNetwork.getWeatherReport(latitude, longitude, exclude, appid)
     }
 
     override suspend fun deleteAllItems() {
@@ -26,6 +29,10 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun saveCity(item: Item) {
         itemsDB.saveItem(item)
+    }
+
+    override suspend fun deleteCity(id: Int) {
+        itemsDB.deleteItem(id)
     }
 
 }

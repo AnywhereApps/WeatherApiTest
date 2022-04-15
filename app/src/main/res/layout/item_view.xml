@@ -20,18 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="210dp">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:minHeight="90dp">
 
             <ImageView
                 android:id="@+id/shadowView"
@@ -42,24 +31,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
-            <TextView
-                android:id="@+id/date_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="36dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:ellipsize="end"
-                android:paddingTop="16dp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="20 Feb 2022" />
 
             <TextView
                 android:id="@+id/title_text"
@@ -75,8 +46,8 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date_text"
-                tools:text="Arrange Capture" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="ABC" />
 
             <TextView
                 android:id="@+id/address_text"
@@ -91,24 +62,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_text"
                 tools:text="Cloud City, Bispan" />
-
-            <TextView
-                android:id="@+id/detail_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginTop="8dp"
-                android:paddingBottom="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/address_text"
-                tools:text="Meet with Lando Calrissian for capture of Han Solo and Leia." />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

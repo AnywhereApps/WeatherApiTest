@@ -58,6 +58,10 @@ import dagger.hilt.android.AndroidEntryPoint
         })
 
 
+      /*  cityViewModel.addCity(1, "London", "51.5085", "-0.1257")
+        cityViewModel.addCity(2, "Texas", "31.9686", "99.9018")
+        cityViewModel.addCity(3, "New York", "40.7128", "74.0060")
+        cityViewModel.addCity(4, "Toronto", "43.6532", "79.3832")*/
 
     }
 

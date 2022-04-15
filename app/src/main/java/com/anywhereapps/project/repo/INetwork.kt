@@ -8,6 +8,9 @@ import com.example.example.WeatherReport
  * This interface is implemented in the `network` package by NetworkImpl
  * */
 interface INetwork {
-    suspend fun getWeatherReport(): WeatherReport
+    suspend fun getWeatherReport(latitude : String,
+                                 longitude : String,
+                                 exclude : String,
+                                 appid : String): WeatherReport
 
 }

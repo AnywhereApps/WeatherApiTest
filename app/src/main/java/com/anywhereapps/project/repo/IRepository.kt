@@ -9,10 +9,14 @@ import com.example.example.WeatherReport
  * */
 interface IRepository {
 
-    suspend fun getWeatherReport(): WeatherReport
+    suspend fun getWeatherReport(latitude : String,
+                                 longitude : String,
+                                 exclude : String,
+                                 appid : String): WeatherReport
     suspend fun deleteAllItems()
     suspend fun getCities() : List<Item>
     suspend fun saveCity(item : Item)
+    suspend fun deleteCity(id : Int)
 
 
 }

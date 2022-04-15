@@ -27,21 +27,6 @@ class ItemsDatabaseImpl(
 
     override suspend fun saveItems(items: List<Item>) {
 
-      /*  val values = items.map {
-            ItemEntity(
-                id = it.id,
-                description = it.description?:"",
-                title = it.title?:"",
-                timestamp = it.timestamp?:"",
-                image = it.image?:"",
-                date = it.date?:"",
-                locationlineone = it.locationline1?:"",
-                locationlinetwo = it.locationline2?:""
-            )
-        }
-        itemsDAO.saveItem(values)
-        */
-
     }
 
     override suspend fun saveItem(it: Item) {
@@ -55,5 +40,9 @@ class ItemsDatabaseImpl(
 
     override suspend fun deleteAllItems() {
         itemsDAO.deleteAllItems()
+    }
+
+    override suspend fun deleteItem(id: Int) {
+        itemsDAO.deleteItem(id)
     }
 }

@@ -29,4 +29,12 @@ class CityListViewModel @Inject constructor(
         }
     }
 
+    fun deleteCity(id : Int?) {
+        viewModelScope.launch {
+            id?.let {
+                repository.deleteCity(it)
+            }
+        }
+    }
+
 }
