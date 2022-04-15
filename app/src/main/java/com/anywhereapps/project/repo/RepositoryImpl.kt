@@ -1,5 +1,6 @@
 package com.anywhereapps.project.repo
 
+import com.anywhereapps.project.network.Item
 import com.example.example.WeatherReport
 import javax.inject.Inject
 
@@ -17,4 +18,14 @@ class RepositoryImpl @Inject constructor(
     override suspend fun deleteAllItems() {
         itemsDB.deleteAllItems()
     }
+
+    override suspend fun getCities(): List<Item> {
+        return itemsDB.getAllItems()
+    }
+
+
+    override suspend fun saveCity(item: Item) {
+        itemsDB.saveItem(item)
+    }
+
 }

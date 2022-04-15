@@ -36,17 +36,10 @@ class ItemsRVAdapter(
     }
 
     inner class ItemViewHolder(private val binding : ItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
         fun bind(item: Item) {
-//            binding.titleText.text = item.title
-//            binding.addressText.text = "${item.locationline1} , ${item.locationline2}"
-//            binding.detailText.text = item.description
-//            item.date?.let {  binding.dateText.text = AppUtil.getTime(it) }
-//            mContext?.let {
-//                Glide.with(mContext).load(item.image).into(binding.imageView)
-//            }
-//            itemView.setOnClickListener { itemClickedListener.onItemClicked(item) }
+            binding.titleText.text = item.name
+            binding.addressText.text = "${item.lat} , ${item.lng}"
+            itemView.setOnClickListener { itemClickedListener.onItemClicked(item) }
         }
     }
 

@@ -43,7 +43,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
 
         // setup share icon
         binding.toolbar.inflateMenu(R.menu.main_menu)
-        binding.toolbar.setOnMenuItemClickListener {
+/*        binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.shareButton -> {
                     AppUtil.shareContent(context,
@@ -53,7 +53,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 }
                 else -> false
             }
-        }
+        }*/
     }
 
 }

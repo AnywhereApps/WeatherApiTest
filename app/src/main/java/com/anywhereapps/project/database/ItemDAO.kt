@@ -20,6 +20,9 @@ interface ItemDAO {
     @Insert
     suspend fun saveItems(items: List<ItemEntity>)
 
+    @Insert
+    suspend fun saveItem(item: ItemEntity)
+
     @Query("DELETE FROM Items")
     suspend fun deleteAllItems()
 }

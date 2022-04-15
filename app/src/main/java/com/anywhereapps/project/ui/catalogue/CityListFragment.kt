@@ -9,52 +9,47 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anywhereapps.project.R
-import com.anywhereapps.project.databinding.FragmentCatalogueBinding
+import com.anywhereapps.project.databinding.FragmentCityListBinding
 import com.anywhereapps.project.network.Item
 import com.anywhereapps.project.ui.MainActivity
 import com.anywhereapps.project.util.Status
-import com.anywhereapps.project.viewmodel.CatalogueViewModel
+import com.anywhereapps.project.viewmodel.CityListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CatalogueFragment : Fragment(R.layout.fragment_catalogue), ItemsRVAdapter.OnItemClickedListener {
+class CityListFragment : Fragment(R.layout.fragment_city_list), ItemsRVAdapter.OnItemClickedListener {
 
+    private lateinit var binding : FragmentCityListBinding
     private lateinit var itemAdapter : ItemsRVAdapter
-    private val catalogueViewModel: CatalogueViewModel by viewModels()
+    private val cityListViewModel: CityListViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentCatalogueBinding.bind(view)
+        binding = FragmentCityListBinding.bind(view)
+        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
 
         itemAdapter = ItemsRVAdapter(this, context)
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = itemAdapter
-        binding.toolbar.title = getString(R.string.app_name)
 
-        catalogueViewModel.fetchCatalogue()
+        cityListViewModel.getCityLists()
         observeLiveData()
+        setClickListeners()
     }
 
     private fun observeLiveData() {
-        catalogueViewModel.items.observe(viewLifecycleOwner) {
-            when (it) {
-                is Status.Success -> {
-                    (activity as? MainActivity)?.showProgressBar(false)
-                    it.data?.let { it1 -> itemAdapter.submitData(it1)  }
+        cityListViewModel.items.observe(viewLifecycleOwner) {
+            itemAdapter.submitData(it)
+        }
+    }
 
-                }
-                is Status.Error -> {
-                    it.message?.let { message ->
-                        (activity as? MainActivity)?.showProgressBar(false)
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
-                    }
-                }
-                is Status.Loading -> {
-                    (activity as? MainActivity)?.showProgressBar(true)
-                }
-            }
-
+    private fun setClickListeners(){
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.addCityButton.setOnClickListener {
+            findNavController().navigate(R.id.action_to_add_city_page)
         }
     }
 

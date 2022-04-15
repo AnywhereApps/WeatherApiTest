@@ -4,9 +4,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/shareButton"
-        android:icon="@drawable/ic_baseline_share_24"
-        android:title="Share"
+        android:id="@+id/citiesButton"
+        android:title="Cities"
         app:showAsAction="ifRoom" />
 
 </menu>

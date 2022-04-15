@@ -10,6 +10,7 @@ interface IItemsDatabase {
 
     suspend fun getAllItems(): List<Item>
     suspend fun saveItems(items: List<Item>)
+    suspend fun saveItem(item: Item)
     suspend fun deleteAllItems()
 
 }

@@ -30,19 +30,9 @@ class ForcastFragment : Fragment(R.layout.fragment_forcast) {
         val binding = FragmentForcastBinding.bind(view)
         setToolbar(binding)
 
-
-
         weatherFragmentAdapter = WeatherFragmentAdapter(this)
         binding.pager.adapter = weatherFragmentAdapter
-        /*     val item = arguments?.getParcelable("item") as? Item
 
-           item?.let {
-             binding.titleText.text = item.title
-               binding.addressText.text = "${item.locationline1} , ${item.locationline2}"
-               binding.detailText.text = item.description
-               item.date?.let { binding.dateText.text = AppUtil.getTime(it) }
-               Glide.with(this).load(item.image).into(binding.backdrop)
-        }*/
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             tab.text = when (position) {
@@ -55,36 +45,19 @@ class ForcastFragment : Fragment(R.layout.fragment_forcast) {
 
 
     private fun setToolbar(binding : FragmentForcastBinding){
-        binding.toolbar.title = ""
-        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
-        binding.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-
-        // setup share icon
+        binding.toolbar.title = getString(R.string.app_name)
         binding.toolbar.inflateMenu(R.menu.main_menu)
-/*        binding.toolbar.setOnMenuItemClickListener {
+        binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.shareButton -> {
-                    AppUtil.shareContent(context,
-                        binding.titleText.text.toString(),
-                        binding.detailText.text.toString())
+                R.id.citiesButton -> {
+                    findNavController().navigate(R.id.action_to_cities_page)
                     true
                 }
                 else -> false
             }
-        }*/
+        }
     }
 
-
-
-
-
-   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        weatherFragmentAdapter = WeatherFragmentAdapter(this)
-        viewPager = view.findViewById(R.id.pager)
-        viewPager.adapter = weatherFragmentAdapter
-    }*/
 }
 
 class WeatherFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
