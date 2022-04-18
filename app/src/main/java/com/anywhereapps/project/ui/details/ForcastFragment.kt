@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bumptech.glide.Glide
 import com.anywhereapps.project.R
-import com.anywhereapps.project.databinding.FragmentDetailsBinding
 import com.anywhereapps.project.databinding.FragmentForcastBinding
 import com.anywhereapps.project.network.Item
-import com.anywhereapps.project.util.AppUtil
 import com.anywhereapps.project.viewmodel.MainViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,71 +17,67 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ForcastFragment : Fragment(R.layout.fragment_forcast) {
 
+    private lateinit var binding: FragmentForcastBinding
     private lateinit var weatherFragmentAdapter: WeatherFragmentAdapter
     private val model: MainViewModel by activityViewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentForcastBinding.bind(view)
-        setToolbar(binding)
+        binding = FragmentForcastBinding.bind(view)
 
-
-
+        checkInput()
         weatherFragmentAdapter = WeatherFragmentAdapter(this)
         binding.pager.adapter = weatherFragmentAdapter
-        /*     val item = arguments?.getParcelable("item") as? Item
 
-           item?.let {
-             binding.titleText.text = item.title
-               binding.addressText.text = "${item.locationline1} , ${item.locationline2}"
-               binding.detailText.text = item.description
-               item.date?.let { binding.dateText.text = AppUtil.getTime(it) }
-               Glide.with(this).load(item.image).into(binding.backdrop)
-        }*/
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            model.fetchWeather()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
+
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Current"
-                1 -> "Hourly"
+                0 -> getString(R.string.current)
+                1 -> getString(R.string.hourly)
                 else -> ""
             }
         }.attach()
     }
 
-
-    private fun setToolbar(binding : FragmentForcastBinding){
-        binding.toolbar.title = ""
-        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
-        binding.toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+    private fun checkInput(){
+        val item = arguments?.getParcelable("item") as? Item
+        if (item != null) {
+            setBackNavigationInToolbar()
+            binding.toolbar.title = item.name
+            model.latitude = item.lat
+            model.longitude = item.lng
+            model.fetchWeather()
+        }else{
+            setMenuInToolbar()
         }
+    }
 
-        // setup share icon
+    private fun setMenuInToolbar(){
+        binding.toolbar.title = getString(R.string.app_name)
         binding.toolbar.inflateMenu(R.menu.main_menu)
-/*        binding.toolbar.setOnMenuItemClickListener {
+        binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
-                R.id.shareButton -> {
-                    AppUtil.shareContent(context,
-                        binding.titleText.text.toString(),
-                        binding.detailText.text.toString())
+                R.id.citiesButton -> {
+                    findNavController().navigate(R.id.action_to_cities_page)
                     true
                 }
                 else -> false
             }
-        }*/
+        }
     }
 
+    private fun setBackNavigationInToolbar(){
+        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
 
-
-
-
-   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        weatherFragmentAdapter = WeatherFragmentAdapter(this)
-        viewPager = view.findViewById(R.id.pager)
-        viewPager.adapter = weatherFragmentAdapter
-    }*/
 }
 
 class WeatherFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {

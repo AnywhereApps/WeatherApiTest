@@ -1,4 +1,4 @@
-package com.example.example
+package com.anywhereapps.project.network.data
 
 import com.google.gson.annotations.SerializedName
 

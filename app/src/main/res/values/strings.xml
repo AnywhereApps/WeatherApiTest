@@ -1,4 +1,5 @@
 <resources>
+    <string name="place_key">AIzaSyAre99mgT5sOfzMYgxNOAfAXMkMQtMep6A</string>
     <string name="app_name">Weather App</string>
     <string name="title">Title</string>
 
@@ -11,4 +12,9 @@
     <string name="windspeed">WindSpeed: %s</string>
     <string name="visibility">Visibility: %s</string>
     <string name="weather">Weather: %s</string>
+    <string name="add_city">Add City</string>
+    <string name="delete_city">Deleted city: %s</string>
+    <string name="current">Current</string>
+    <string name="hourly">Hourly</string>
+
 </resources>

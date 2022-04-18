@@ -10,11 +10,7 @@ import androidx.room.PrimaryKey
 class ItemEntity(
     @PrimaryKey
     val id: Int,
-    val description: String,
-    val title: String,
-    val timestamp: String,
-    val image: String,
-    val date: String,
-    val locationlineone: String,
-    val locationlinetwo: String
+    val name: String,
+    val lat: String,
+    val lng: String
 )

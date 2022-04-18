@@ -6,12 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.anywhereapps.project.R
 import com.anywhereapps.project.databinding.FragmentHourlyItemBinding
-import com.bumptech.glide.Glide
-import com.anywhereapps.project.databinding.ItemViewBinding
-import com.anywhereapps.project.network.Item
 
-import com.anywhereapps.project.util.AppUtil
-import com.example.example.Hourly
+import com.anywhereapps.project.network.data.Hourly
 
 
 class HourlyAdapter(

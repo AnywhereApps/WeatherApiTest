@@ -12,19 +12,14 @@ class ItemsDatabaseImpl(
 ) : IItemsDatabase {
     override suspend fun getAllItems(): List<Item> {
         return if (itemsDAO.getAllItems() != null){
-  /*          itemsDAO.getAllItems()?.map {
+            itemsDAO.getAllItems()?.map {
                 Item(
                     id = it.id,
-                    description = it.description,
-                    title = it.title,
-                    timestamp = it.timestamp,
-                    image = it.image,
-                    date = it.date,
-                    locationline1 = it.locationlineone,
-                    locationline2 = it.locationlinetwo
+                    name = it.name,
+                    lat = it.lat,
+                    lng = it.lng
                 )
-            }*/
-            emptyList()
+            }
         }else {
             emptyList()
         }
@@ -32,23 +27,22 @@ class ItemsDatabaseImpl(
 
     override suspend fun saveItems(items: List<Item>) {
 
-      /*  val values = items.map {
-            ItemEntity(
-                id = it.id,
-                description = it.description?:"",
-                title = it.title?:"",
-                timestamp = it.timestamp?:"",
-                image = it.image?:"",
-                date = it.date?:"",
-                locationlineone = it.locationline1?:"",
-                locationlinetwo = it.locationline2?:""
-            )
-        }
-        itemsDAO.saveItems(values)*/
     }
 
+    override suspend fun saveItem(it: Item) {
+        itemsDAO.saveItem(ItemEntity(
+            id = it.id,
+            name = it.name?:"",
+            lat = it.lat?:"",
+            lng = it.lng?:""
+        ))
+    }
 
     override suspend fun deleteAllItems() {
         itemsDAO.deleteAllItems()
+    }
+
+    override suspend fun deleteItem(id: Int) {
+        itemsDAO.deleteItem(id)
     }
 }

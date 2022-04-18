@@ -1,27 +1,14 @@
 package com.anywhereapps.project.network
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Item (
+  var id   : Int = 0,
+  var name : String? = null,
+  var lat  : String? = null,
+  var lng  : String? = null,
+):Parcelable
 
 
-/*data class Item (
-
-  @SerializedName("dt"         ) var dt         : Int?               = null,
-  @SerializedName("sunrise"    ) var sunrise    : Int?               = null,
-  @SerializedName("sunset"     ) var sunset     : Int?               = null,
-  @SerializedName("temp"       ) var temp       : Double?            = null,
-  @SerializedName("feels_like" ) var feelsLike  : Double?            = null,
-  @SerializedName("pressure"   ) var pressure   : Int?               = null,
-  @SerializedName("humidity"   ) var humidity   : Int?               = null,
-  @SerializedName("dew_point"  ) var dewPoint   : Double?            = null,
-  @SerializedName("uvi"        ) var uvi        : Double?            = null,
-  @SerializedName("clouds"     ) var clouds     : Int?               = null,
-  @SerializedName("visibility" ) var visibility : Int?               = null,
-  @SerializedName("wind_speed" ) var windSpeed  : Double?            = null,
-  @SerializedName("wind_deg"   ) var windDeg    : Int?               = null,
-  @SerializedName("weather"    ) var weather    : ArrayList<Weather> = arrayListOf()
-
-)*/
-
-class Item {
-
-}

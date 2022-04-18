@@ -3,23 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listFragment">
+    app:startDestination="@id/forcastFragment">
 
     <fragment
-        android:id="@+id/listFragment"
+        android:id="@+id/forcastFragment"
         android:name="com.anywhereapps.project.ui.details.ForcastFragment"
         android:label="fragment_forcast"
         tools:layout="@layout/fragment_forcast">
         <action
-            android:id="@+id/action_list_to_detail_page"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_to_cities_page"
+            app:destination="@id/cityListFragment" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.anywhereapps.project.ui.details.DetailsFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_details" />
+        android:id="@+id/cityListFragment"
+        android:name="com.anywhereapps.project.ui.catalogue.CityListFragment"
+        android:label="fragment_cities"
+        tools:layout="@layout/fragment_city_list">
+        <action
+            android:id="@+id/action_to_add_city_page"
+            app:destination="@id/addCityFragment" />
+
+        <action
+            android:id="@+id/action_to_forcast_screen"
+            app:destination="@id/forcastFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCityFragment"
+        android:name="com.anywhereapps.project.ui.catalogue.AddCityFragment"
+        android:label="fragment_add_city"
+        tools:layout="@layout/fragment_add_city">
+
+    </fragment>
 
 </navigation>

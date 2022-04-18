@@ -5,22 +5,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.anywhereapps.project.R
-import com.anywhereapps.project.databinding.FragmentCatalogueBinding
-import com.anywhereapps.project.databinding.FragmentDetailsBinding
 import com.anywhereapps.project.databinding.FragmentHourlyBinding
-import com.anywhereapps.project.network.Item
-import com.anywhereapps.project.ui.MainActivity
-import com.anywhereapps.project.ui.catalogue.ItemsRVAdapter
-import com.anywhereapps.project.util.AppUtil
 import com.anywhereapps.project.util.Status
-import com.anywhereapps.project.viewmodel.CatalogueViewModel
 import com.anywhereapps.project.viewmodel.MainViewModel
-import com.example.example.Hourly
+import com.anywhereapps.project.network.data.Hourly
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -62,5 +52,4 @@ class HourlyFragment : Fragment(R.layout.fragment_hourly) , HourlyAdapter.OnItem
     override fun onItemClicked(item: Hourly) {
 
     }
-
 }
