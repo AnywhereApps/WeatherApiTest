@@ -1,7 +1,7 @@
 package com.anywhereapps.project.repo
 
 import com.anywhereapps.project.network.Item
-import com.example.example.WeatherReport
+import com.anywhereapps.project.network.data.WeatherReport
 import javax.inject.Inject
 
 /**

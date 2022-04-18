@@ -1,6 +1,6 @@
 package com.anywhereapps.project.repo
 
-import com.example.example.WeatherReport
+import com.anywhereapps.project.network.data.WeatherReport
 
 /**
  * The interface that will provide the network communication between the REST API and the app

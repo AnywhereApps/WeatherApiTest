@@ -14,4 +14,7 @@
     <string name="weather">Weather: %s</string>
     <string name="add_city">Add City</string>
     <string name="delete_city">Deleted city: %s</string>
+    <string name="current">Current</string>
+    <string name="hourly">Hourly</string>
+
 </resources>

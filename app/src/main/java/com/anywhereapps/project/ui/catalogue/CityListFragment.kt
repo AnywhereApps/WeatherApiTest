@@ -1,8 +1,11 @@
 package com.anywhereapps.project.ui.catalogue
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,7 +28,6 @@ class CityListFragment : Fragment(R.layout.fragment_city_list), ItemsRVAdapter.O
     private val cityListViewModel: CityListViewModel by viewModels()
     var datalist = arrayListOf<Item>()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCityListBinding.bind(view)
@@ -36,13 +38,14 @@ class CityListFragment : Fragment(R.layout.fragment_city_list), ItemsRVAdapter.O
         binding.recyclerView.adapter = itemAdapter
         setupSwipeToDelete(binding.recyclerView, itemAdapter)
 
-        cityListViewModel.getCityLists()
         observeLiveData()
         setClickListeners()
+        cityListViewModel.getCityLists()
     }
 
     private fun observeLiveData() {
         cityListViewModel.items.observe(viewLifecycleOwner) {
+            datalist.clear()
             datalist.addAll(it)
             itemAdapter.submitData(datalist)
         }
@@ -59,8 +62,8 @@ class CityListFragment : Fragment(R.layout.fragment_city_list), ItemsRVAdapter.O
 
 
     override fun onItemClicked(item: Item) {
-//        val bundle = bundleOf("item" to item)
-//         findNavController().navigate(R.id.action_list_to_detail_page, bundle)
+        val bundle = bundleOf("item" to item)
+         findNavController().navigate(R.id.action_to_forcast_screen, bundle)
     }
 
     private fun setupSwipeToDelete(recyclerview : RecyclerView,

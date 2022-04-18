@@ -10,7 +10,7 @@ import com.anywhereapps.project.R
 import com.anywhereapps.project.databinding.FragmentHourlyBinding
 import com.anywhereapps.project.util.Status
 import com.anywhereapps.project.viewmodel.MainViewModel
-import com.example.example.Hourly
+import com.anywhereapps.project.network.data.Hourly
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -52,5 +52,4 @@ class HourlyFragment : Fragment(R.layout.fragment_hourly) , HourlyAdapter.OnItem
     override fun onItemClicked(item: Hourly) {
 
     }
-
 }

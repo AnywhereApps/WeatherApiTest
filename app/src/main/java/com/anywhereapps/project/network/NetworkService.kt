@@ -1,6 +1,6 @@
 package com.anywhereapps.project.network
 
-import com.example.example.WeatherReport
+import com.anywhereapps.project.network.data.WeatherReport
 import retrofit2.http.*
 
 /**

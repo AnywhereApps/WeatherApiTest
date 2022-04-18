@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bumptech.glide.Glide
 import com.anywhereapps.project.R
-import com.anywhereapps.project.databinding.FragmentDetailsBinding
 import com.anywhereapps.project.databinding.FragmentForcastBinding
 import com.anywhereapps.project.network.Item
-import com.anywhereapps.project.util.AppUtil
 import com.anywhereapps.project.viewmodel.MainViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,31 +17,47 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ForcastFragment : Fragment(R.layout.fragment_forcast) {
 
+    private lateinit var binding: FragmentForcastBinding
     private lateinit var weatherFragmentAdapter: WeatherFragmentAdapter
     private val model: MainViewModel by activityViewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentForcastBinding.bind(view)
-        setToolbar(binding)
+        binding = FragmentForcastBinding.bind(view)
 
+        checkInput()
         weatherFragmentAdapter = WeatherFragmentAdapter(this)
         binding.pager.adapter = weatherFragmentAdapter
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            model.fetchWeather()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
 
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Current"
-                1 -> "Hourly"
+                0 -> getString(R.string.current)
+                1 -> getString(R.string.hourly)
                 else -> ""
             }
         }.attach()
     }
 
+    private fun checkInput(){
+        val item = arguments?.getParcelable("item") as? Item
+        if (item != null) {
+            setBackNavigationInToolbar()
+            binding.toolbar.title = item.name
+            model.latitude = item.lat
+            model.longitude = item.lng
+            model.fetchWeather()
+        }else{
+            setMenuInToolbar()
+        }
+    }
 
-    private fun setToolbar(binding : FragmentForcastBinding){
+    private fun setMenuInToolbar(){
         binding.toolbar.title = getString(R.string.app_name)
         binding.toolbar.inflateMenu(R.menu.main_menu)
         binding.toolbar.setOnMenuItemClickListener {
@@ -55,6 +68,13 @@ class ForcastFragment : Fragment(R.layout.fragment_forcast) {
                 }
                 else -> false
             }
+        }
+    }
+
+    private fun setBackNavigationInToolbar(){
+        binding.toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

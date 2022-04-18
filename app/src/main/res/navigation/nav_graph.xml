@@ -25,6 +25,10 @@
             android:id="@+id/action_to_add_city_page"
             app:destination="@id/addCityFragment" />
 
+        <action
+            android:id="@+id/action_to_forcast_screen"
+            app:destination="@id/forcastFragment" />
+
     </fragment>
 
     <fragment
@@ -32,17 +36,7 @@
         android:name="com.anywhereapps.project.ui.catalogue.AddCityFragment"
         android:label="fragment_add_city"
         tools:layout="@layout/fragment_add_city">
-        <action
-            android:id="@+id/action_list_to_detail_page"
-            app:destination="@id/detailFragment" />
 
     </fragment>
-
-
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.anywhereapps.project.ui.details.DetailsFragment"
-        android:label="fragment_detail"
-        tools:layout="@layout/fragment_details" />
 
 </navigation>

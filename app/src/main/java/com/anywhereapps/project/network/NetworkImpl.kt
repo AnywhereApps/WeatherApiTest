@@ -1,8 +1,7 @@
 package com.anywhereapps.project.network
 
 import com.anywhereapps.project.repo.INetwork
-import com.example.example.WeatherReport
-import retrofit2.http.Query
+import com.anywhereapps.project.network.data.WeatherReport
 
 /**
  * Implementation of INetwork that's provided by the repo package.

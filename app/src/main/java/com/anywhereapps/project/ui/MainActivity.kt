@@ -2,14 +2,11 @@ package com.anywhereapps.project.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import com.anywhereapps.project.R
 import com.anywhereapps.project.databinding.ActivityMainBinding
 import com.anywhereapps.project.viewmodel.MainViewModel
@@ -68,7 +65,9 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient.lastLocation
             .addOnSuccessListener {
                 it?.let {
-                    model.fetchWeather(it.latitude.toString(), it.longitude.toString())
+                    model.latitude = it.latitude.toString()
+                    model.longitude = it.longitude.toString()
+                    model.fetchWeather()
                 }
             }
     }

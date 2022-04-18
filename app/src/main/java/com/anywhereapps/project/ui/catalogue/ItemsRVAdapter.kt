@@ -4,11 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.anywhereapps.project.databinding.ItemViewBinding
 import com.anywhereapps.project.network.Item
-
-import com.anywhereapps.project.util.AppUtil
 
 
 class ItemsRVAdapter(
